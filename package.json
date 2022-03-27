@@ -4,6 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
+    "build":"npx prisma generate && tsc",
     "start": "ts-node --transpile-only ./src/index.ts",
     "dev": "nodemon --config nodemon.json src/index.ts"
   },
