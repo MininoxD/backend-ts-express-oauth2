@@ -9,7 +9,11 @@ app.use(json())
 app.use(morgan('dev'))
 app.use(mainRouter)
 app.get('/', (req, res) => {
-  res.send('hello world')
+  res.send({
+    name: 'gez-api',
+    version: '1.0.0',
+    description: 'Api for Gez project'
+  })
 })
 app.listen(port, () => NODE_ENV === 'development' && console.log(`Server started on port: http://localhost:${port}`)
 )

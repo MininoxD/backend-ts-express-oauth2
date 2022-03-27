@@ -6,6 +6,7 @@ interface Params {
     phone: string
 }
 export const phoneVerify = async (req: Request, res: Response, next: NextFunction) => {
+  const TWILIO_NUMBER = process.env.TWILIO_NUMBER || ''
   const { phone }: Params = req.body
   const user = await clientDB.user.findUnique({
     where: {
@@ -27,7 +28,7 @@ export const phoneVerify = async (req: Request, res: Response, next: NextFunctio
     }
   })
   clientTwilio.messages.create({
-    from: '+12254016523',
+    from: TWILIO_NUMBER,
     body: `GezAuth Your Code is: ${hashToken}`,
     to: phone
   })

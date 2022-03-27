@@ -7,6 +7,7 @@ interface Param {
     phone: string
 }
 export const PhoneRegistration = async (req: Request, res: Response) => {
+  const TWILIO_NUMBER = process.env.TWILIO_NUMBER || ''
   const { phone }: Param = req.body
   const hashToken = getToken()
   const currentDate = new Date()
@@ -17,7 +18,7 @@ export const PhoneRegistration = async (req: Request, res: Response) => {
   })
 
   clientTwilio.messages.create({
-    from: '+12254016523',
+    from: TWILIO_NUMBER,
     body: `GezAuth Your Code is: ${hashToken}`,
     to: phone
   })
